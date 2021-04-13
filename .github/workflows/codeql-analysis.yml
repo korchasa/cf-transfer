@@ -1,4 +1,4 @@
-# For most projects, this workflow file will not need changing; you simply need
+# For most projects, this workflows file will not need changing; you simply need
 # to commit it to your repository.
 #
 # You may wish to alter this file to override the set of languages analyzed,
@@ -13,12 +13,10 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - '**'
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: [ main ]
-  schedule:
-    - cron: '35 11 * * 4'
 
 jobs:
   analyze:
