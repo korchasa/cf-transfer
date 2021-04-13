@@ -1,12 +1,13 @@
-package main
+package pkg
 
 import (
+	"context"
 	"fmt"
 	"github.com/cloudflare/cloudflare-go"
 	"log"
 )
 
-func CopyDNSRecords(sourceZone *cloudflare.Zone, destZone *cloudflare.Zone) error {
+func CopyDNSRecords(ctx context.Context, cf *cloudflare.API, sourceZone *cloudflare.Zone, destZone *cloudflare.Zone) error {
 	log.Printf("Copy DNS records...")
 	records, err := cf.DNSRecords(ctx, sourceZone.ID, cloudflare.DNSRecord{})
 	if err != nil {

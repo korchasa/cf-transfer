@@ -1,12 +1,13 @@
-package main
+package pkg
 
 import (
+	"context"
 	"fmt"
 	"github.com/cloudflare/cloudflare-go"
 	"log"
 )
 
-func CopySettings(err error, sourceZone *cloudflare.Zone, destZone *cloudflare.Zone) ([]string, error) {
+func CopySettings(ctx context.Context, cf *cloudflare.API, sourceZone *cloudflare.Zone, destZone *cloudflare.Zone) ([]string, error) {
 	log.Printf("Copy settings...")
 	var settingsWithErrors []string
 	allSettings, err := cf.ZoneSettings(ctx, sourceZone.ID)

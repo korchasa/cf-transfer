@@ -1,6 +1,7 @@
-package main
+package pkg
 
 import (
+	"context"
 	"fmt"
 	"github.com/cloudflare/cloudflare-go"
 	"github.com/manifoldco/promptui"
@@ -8,7 +9,7 @@ import (
 	"os"
 )
 
-func CleanupZone(destZone *cloudflare.Zone) error {
+func CleanupZone(ctx context.Context, cf *cloudflare.API, destZone *cloudflare.Zone) error {
 	log.Printf("Cleanup destination zone...")
 
 	prompt := promptui.Select{

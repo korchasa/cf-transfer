@@ -1,12 +1,13 @@
-package main
+package pkg
 
 import (
+	"context"
 	"fmt"
 	"github.com/cloudflare/cloudflare-go"
 	"github.com/manifoldco/promptui"
 )
 
-func SelectZone(account *cloudflare.Account, label string) (*cloudflare.Zone, error) {
+func SelectZone(ctx context.Context, cf *cloudflare.API, account *cloudflare.Account, label string) (*cloudflare.Zone, error) {
 	zl, err := cf.ListZones(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("can't get zones list: %v", err)

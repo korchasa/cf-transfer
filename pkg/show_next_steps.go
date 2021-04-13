@@ -1,12 +1,13 @@
-package main
+package pkg
 
 import (
+	"context"
 	"fmt"
 	"github.com/cloudflare/cloudflare-go"
 	"log"
 )
 
-func ShowNextSteps(settingsWithErrors []string, sourceZone *cloudflare.Zone) error {
+func ShowNextSteps(ctx context.Context, cf *cloudflare.API, settingsWithErrors []string, sourceZone *cloudflare.Zone) error {
 	log.Printf("Next steps:")
 	log.Printf(" - Check and update settings manualy:")
 	for _, er := range settingsWithErrors {
