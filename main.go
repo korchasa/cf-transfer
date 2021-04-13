@@ -8,13 +8,17 @@ import (
 	"os"
 )
 
-var cf *cloudflare.API
-var ctx context.Context
+func init() {
+	log.SetFlags(0)
+}
 
 func main() {
-	log.SetFlags(0)
+	var (
+		cf *cloudflare.API
+		ctx context.Context
+		err error
+	)
 
-	var err error
 	cf, err = cloudflare.New(os.Getenv("CLOUDFLARE_KEY"), os.Getenv("CLOUDFLARE_EMAIL"))
 	if err != nil {
 		log.Fatalf("Can't init cloudflare cf: %s", err)
