@@ -19,7 +19,7 @@ func main() {
 		err error
 	)
 
-	cf, err = cloudflare.New(os.Getenv("CLOUDFLARE_KEY"), os.Getenv("CLOUDFLARE_EMAIL"))
+	cf, err = cloudflare.New(ensureEnv("CLOUDFLARE_KEY"), ensureEnv("CLOUDFLARE_EMAIL"))
 	if err != nil {
 		log.Fatalf("Can't init cloudflare cf: %s", err)
 	}
@@ -71,4 +71,12 @@ func main() {
 	if err := pkg.ShowNextSteps(ctx, cf, settingsWithErrors, sourceZone); err != nil {
 		log.Fatalf("Can't show next steps: %s", err)
 	}
+}
+
+func ensureEnv(name string) string {
+	value := os.Getenv(name)
+	if value == "" {
+		log.Fatalf("Env variable `%s` not set", name)
+	}
+	return value
 }
