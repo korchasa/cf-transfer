@@ -2,6 +2,12 @@
 
 ![screenshot](./docs/screenshot.png)
 
+Transferred information:
+    
+- DNS records
+- Zone settings available by API (See "Next steps" in script output)
+- Page Rules
+
 ## Installation
 
  - binary can be downloaded from the GitHub [releases page](https://github.com/korchasa/cf-transfer/releases).
