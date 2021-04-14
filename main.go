@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"github.com/cloudflare/cloudflare-go"
-	"korchasa/cloudflare-transfer/pkg"
+	"korchasa/cf-transfer/pkg"
 	"log"
 	"os"
 )
@@ -14,7 +14,7 @@ func init() {
 
 func main() {
 	var (
-		cf *cloudflare.API
+		cf  *cloudflare.API
 		ctx context.Context
 		err error
 	)
@@ -46,12 +46,12 @@ func main() {
 	}
 	if destZone != nil {
 		if err := pkg.CleanupZone(ctx, cf, destZone); err != nil {
-			log.Fatalf("Can't cleanup destination zone: %v",err)
+			log.Fatalf("Can't cleanup destination zone: %v", err)
 		}
 	} else {
 		destZone, err = pkg.CreateZone(ctx, cf, sourceZone, destAccount)
 		if err != nil {
-			log.Fatalf("Can't create zone: %s",err)
+			log.Fatalf("Can't create zone: %s", err)
 		}
 	}
 

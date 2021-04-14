@@ -1,4 +1,4 @@
-module korchasa/cloudflare-transfer
+module korchasa/cf-transfer
 
 go 1.16
 
