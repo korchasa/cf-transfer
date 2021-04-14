@@ -18,7 +18,7 @@ func CopySettings(ctx context.Context, cf *cloudflare.API, sourceZone *cloudflar
 		sets := []cloudflare.ZoneSetting{s}
 		_, err = cf.UpdateZoneSettings(ctx, destZone.ID, sets)
 		if err != nil {
-			settingsWithErrors = append(settingsWithErrors, fmt.Sprintf(" - %s: %v", s.ID, err))
+			settingsWithErrors = append(settingsWithErrors, fmt.Sprintf("%s: %v", s.ID, err))
 		} else {
 			log.Printf(" - %s: %v", s.ID, s.Value)
 		}

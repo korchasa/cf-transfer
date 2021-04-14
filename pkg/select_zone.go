@@ -5,9 +5,12 @@ import (
 	"fmt"
 	"github.com/cloudflare/cloudflare-go"
 	"github.com/manifoldco/promptui"
+	"log"
 )
 
 func SelectZone(ctx context.Context, cf *cloudflare.API, account *cloudflare.Account, label string) (*cloudflare.Zone, error) {
+	log.Printf("%s...", label)
+
 	zl, err := cf.ListZones(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("can't get zones list: %v", err)
@@ -26,7 +29,7 @@ func SelectZone(ctx context.Context, cf *cloudflare.API, account *cloudflare.Acc
 	prompt := promptui.Select{
 		Label: label,
 		Items: items,
-		Size: 20,
+		Size:  20,
 	}
 
 	_, name, pErr := prompt.Run()

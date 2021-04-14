@@ -49,5 +49,6 @@ func CleanupZone(ctx context.Context, cf *cloudflare.API, destZone *cloudflare.Z
 			return fmt.Errorf("can't delete zone record: %v", err)
 		}
 	}
+
 	return nil
 }

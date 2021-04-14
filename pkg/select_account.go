@@ -5,9 +5,12 @@ import (
 	"fmt"
 	"github.com/cloudflare/cloudflare-go"
 	"github.com/manifoldco/promptui"
+	"log"
 )
 
 func SelectAccount(ctx context.Context, cf *cloudflare.API, label string) (*cloudflare.Account, error) {
+	log.Printf("%s...", label)
+
 	acs, _, err := cf.Accounts(ctx, cloudflare.PaginationOptions{PerPage: 50})
 	if err != nil {
 		return nil, fmt.Errorf("can't get accounts list: %v", err)
@@ -23,7 +26,7 @@ func SelectAccount(ctx context.Context, cf *cloudflare.API, label string) (*clou
 	prompt := promptui.Select{
 		Label: label,
 		Items: items,
-		Size: 20,
+		Size:  20,
 	}
 
 	_, name, pErr := prompt.Run()
